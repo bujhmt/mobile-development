@@ -1,0 +1,60 @@
+module.exports = {
+    root: true,
+    parser: 'babel-eslint',
+    extends: ['airbnb', 'prettier'],
+    plugins: ['react', 'react-native', 'jsx-a11y', 'react-hooks'],
+    parserOptions: {
+        ecmaFeatures: {
+            jsx: true
+        }
+    },
+    env: {
+        'react-native/react-native': true
+    },
+    rules: {
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'warn',
+        'react/jsx-one-expression-per-line': 0,
+        'linebreak-style': ['off'],
+        'implicit-arrow-linebreak': 0,
+        'no-undef': ['error'],
+        'react/sort-comp': ['off'],
+        'react/prefer-stateless-function': ['off'],
+        'react/destructuring-assignment': 1,
+        'function-paren-newline': 0,
+        'spaced-comment': 0,
+        'react/prop-types': 0,
+        'no-extra-boolean-cast': 0,
+        'quote-props': 1,
+        camelcase: 0,
+        'no-nested-ternary': 0,
+        'react/jsx-wrap-multilines': 0,
+        'object-curly-newline': 0,
+        'operator-linebreak': 0,
+        'no-unused-expressions': 0,
+        'global-require': 0,
+        'max-len': 0,
+        'no-underscore-dangle': 0,
+        'no-return-assign': 0,
+        'jsx-quotes': ['error', 'prefer-single'],
+        'no-console': 'error',
+        'arrow-parens': 0,
+        'eol-last': 0,
+        'react-native/no-unused-styles': 0,
+        'react-native/split-platform-components': 0,
+        'react-native/no-inline-styles': 0,
+        'react-native/no-color-literals': 0,
+        'react-native/no-raw-text': 0,
+        'consistent-return': 0,
+        'import/prefer-default-export': 0,
+        quotes: [2, 'single', {avoidEscape: true}],
+        'import/extensions': 0,
+        'import/no-unresolved': 0,
+        'react/jsx-filename-extension': 0,
+        'import/no-extraneous-dependencies': 0,
+        'import/no-duplicates': 0,
+    },
+    settings: {
+        'import/extensions': ['.js', '.mjs', '.jsx', '.ts', '.tsx']
+    },
+}

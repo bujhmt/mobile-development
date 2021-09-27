@@ -9,78 +9,62 @@ import {WrapperView} from './components/view/wrapper-view';
 export function Root() {
     const [expression, setExpression] = useState<string>('');
 
+    const numberHandler = (value: string) => {
+        setExpression(`${expression}${value}`);
+    }
+
+    const signHandler = (value: string) => {
+        setExpression(`${expression} ${value} `);
+    }
+
     const buttons: ButtonListItem[] = [
         {
             text: '1',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
+            handler: numberHandler,
         },
         {
             text: '2',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
+            handler:  numberHandler,
         },
         {
             text: '3',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
+            handler:  numberHandler,
         },
         {
             text: '+',
-            handler: (value) => {
-                setExpression(`${expression} ${value} `);
-            }
+            handler: signHandler,
         },
         {
             text: '4',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
+            handler: numberHandler,
         },
         {
             text: '5',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
+            handler: numberHandler,
         },
         {
             text: '6',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
+            handler: numberHandler,
         },
         {
             text: '-',
-            handler: (value) => {
-                setExpression(`${expression} ${value} `);
-            }
+            handler: signHandler,
         },
         {
             text: '7',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
+            handler: numberHandler,
         },
         {
             text: '8',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
+            handler: numberHandler,
         },
         {
             text: '9',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
+            handler: numberHandler,
         },
         {
             text: '*',
-            handler: (value) => {
-                setExpression(`${expression} ${value} `);
-            }
+            handler: signHandler,
         },
         {
             text: 'C',
@@ -90,9 +74,7 @@ export function Root() {
         },
         {
             text: '0',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
+            handler: numberHandler,
         },
         {
             text: '=',
@@ -102,9 +84,7 @@ export function Root() {
         },
         {
             text: '/',
-            handler: (value) => {
-                setExpression(`${expression} ${value} `);
-            }
+            handler: signHandler,
         },
     ];
 

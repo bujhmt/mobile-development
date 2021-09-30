@@ -1,119 +1,25 @@
 import React, {useState} from 'react';
-import {evaluate} from 'mathjs';
-import {CustomView} from './components/view/root-view';
-import {ButtonsFlatList} from './components/buttons-flat-list/buttons-flat-list';
-import {ButtonListItem} from './interfaces/button-list-item';
-import {CustomTextInput} from './components/inputs/text-input';
-import {WrapperView} from './components/view/wrapper-view';
+import {RootView} from "./components/views/root-view";
+import {Field} from "./components/field";
+import {FlatList, View} from "react-native";
 
 export function Root() {
-    const [expression, setExpression] = useState<string>('');
+    const renderItem = () => (
+        <Field onSelect={(value) => {
+            console.log(value)
+        }}/>
+    );
 
-    const buttons: ButtonListItem[] = [
-        {
-            text: '1',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '2',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '3',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '+',
-            handler: (value) => {
-                setExpression(`${expression} ${value} `);
-            }
-        },
-        {
-            text: '4',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '5',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '6',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '-',
-            handler: (value) => {
-                setExpression(`${expression} ${value} `);
-            }
-        },
-        {
-            text: '7',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '8',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '9',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '*',
-            handler: (value) => {
-                setExpression(`${expression} ${value} `);
-            }
-        },
-        {
-            text: 'C',
-            handler: () => {
-                setExpression('');
-            }
-        },
-        {
-            text: '0',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '=',
-            handler: () => {
-                setExpression(evaluate(expression).toString());
-            }
-        },
-        {
-            text: '/',
-            handler: (value) => {
-                setExpression(`${expression} ${value} `);
-            }
-        },
-    ];
+    const data = Array.from({length: 16}, (_, k) => k.toString());
 
     return (
-        <CustomView>
-            <WrapperView>
-                <CustomTextInput value={expression} editable={false}/>
-                <ButtonsFlatList buttons={buttons}/>
-            </WrapperView>
-        </CustomView>
+        <RootView>
+            <FlatList
+                data={data}
+                renderItem={renderItem}
+                numColumns={4}
+                keyExtractor={(key) => key}
+            />
+        </RootView>
     );
 }

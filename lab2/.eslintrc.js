@@ -1,7 +1,7 @@
 module.exports = {
     root: true,
     parser: 'babel-eslint',
-    extends: ['airbnb', 'prettier'],
+    extends: ['airbnb-typescript', 'prettier'],
     plugins: ['react', 'react-native', 'jsx-a11y', 'react-hooks'],
     parserOptions: {
         ecmaFeatures: {

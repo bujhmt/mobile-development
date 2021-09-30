@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import {TextInput} from 'react-native';
 
-export const CustomTextInput = styled(TextInput)`
+export const DefaultTextInput = styled(TextInput)`
   background: ${({theme}) => theme.secondary};
-  width: 340px;
+  max-width: 340px;
+  width: 100%;
   height: 50px;
   border-radius: 10px;
   margin-bottom: 40px;

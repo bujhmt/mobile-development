@@ -1,119 +1,46 @@
 import React, {useState} from 'react';
 import {evaluate} from 'mathjs';
-import {CustomView} from './components/view/root-view';
-import {ButtonsFlatList} from './components/buttons-flat-list/buttons-flat-list';
-import {ButtonListItem} from './interfaces/button-list-item';
-import {CustomTextInput} from './components/inputs/text-input';
+import {RootView} from './components/view/root-view';
 import {WrapperView} from './components/view/wrapper-view';
+import {NumberInput} from './components/inputs/number-input';
+import {Select} from "./components/inputs/select";
+import {CenterSpaceEvenlyView} from "./components/view/center-space-evenly-view";
+import {PrimaryWhiteText} from "./components/texts/primary-white-text";
+import {DefaultTextInput} from "./components/inputs/flexible-text-input";
+import {DefaultButton} from "./components/buttons/default-button";
+import {PrimaryBlackText} from "./components/texts/primary-black-text";
 
 export function Root() {
-    const [expression, setExpression] = useState<string>('');
+    const [firstNumber, setFirstNumber] = useState('');
+    const [secondNumber, setSecondNumber] = useState('');
+    const [operationSign, setOperationSign] = useState('+');
+    const [result, setResult] = useState('');
 
-    const buttons: ButtonListItem[] = [
-        {
-            text: '1',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '2',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '3',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '+',
-            handler: (value) => {
-                setExpression(`${expression} ${value} `);
-            }
-        },
-        {
-            text: '4',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '5',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '6',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '-',
-            handler: (value) => {
-                setExpression(`${expression} ${value} `);
-            }
-        },
-        {
-            text: '7',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '8',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '9',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '*',
-            handler: (value) => {
-                setExpression(`${expression} ${value} `);
-            }
-        },
-        {
-            text: 'C',
-            handler: () => {
-                setExpression('');
-            }
-        },
-        {
-            text: '0',
-            handler: (value) => {
-                setExpression(`${expression}${value}`);
-            }
-        },
-        {
-            text: '=',
-            handler: () => {
-                setExpression(evaluate(expression).toString());
-            }
-        },
-        {
-            text: '/',
-            handler: (value) => {
-                setExpression(`${expression} ${value} `);
-            }
-        },
-    ];
+    const operations = ['+', '-', '*', '/'];
+
+    const calculate = () => {
+        if (firstNumber && secondNumber) {
+            setResult(evaluate(`${firstNumber} ${operationSign} ${secondNumber}`).toString());
+        }
+    };
 
     return (
-        <CustomView>
+        <RootView>
             <WrapperView>
-                <CustomTextInput value={expression} editable={false}/>
-                <ButtonsFlatList buttons={buttons}/>
+                <NumberInput onChange={setFirstNumber} value={firstNumber}/>
+                <NumberInput onChange={setSecondNumber} value={secondNumber}/>
+                <CenterSpaceEvenlyView>
+                    <PrimaryWhiteText>Операція:</PrimaryWhiteText>
+                    <Select handleChange={setOperationSign} values={operations}/>
+                </CenterSpaceEvenlyView>
+                <CenterSpaceEvenlyView>
+                    <PrimaryWhiteText>Результат:</PrimaryWhiteText>
+                    <DefaultTextInput editable={false} value={result}/>
+                </CenterSpaceEvenlyView>
+                <DefaultButton onPress={calculate}>
+                    <PrimaryBlackText>Обрахувати</PrimaryBlackText>
+                </DefaultButton>
             </WrapperView>
-        </CustomView>
+        </RootView>
     );
 }
